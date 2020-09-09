@@ -2,41 +2,20 @@ import requests
 from bs4 import BeautifulSoup
 from random import choice as choose
 from time import sleep
+from csv import reader
+
+
 class GuessWho():
-	switch=True
 	base_url="http://quotes.toscrape.com"
 
 	def __init__(self):
 		self.url=GuessWho.base_url
-
-	def request(self):
-		self.response=requests.get(self.url)
-		return self.response
-
-	def parser(self):
-		self.request()
-		self.html=(self.response.text)
-		soup=BeautifulSoup(self.html,"html.parser")
-		data=soup.select(".quote")
-		self.quotes=[[item.find(class_="text").get_text(),item.find(attrs={"itemprop":"author"}).get_text(),item.find("span").find_next("span").a['href']] for item in data]
-		
-		while soup.find(class_="next"):
-			next_page=soup.find(class_="next").a["href"]
-			self.url=self.url+f"{next_page}"
-			# sleep(2)
-			self.request()
-			self.html=(self.response.text)
-			soup=BeautifulSoup(self.html,"html.parser")
-			data=soup.select(".quote")
-			new_quotes=[[item.find(class_="text").get_text(),item.find(attrs={"itemprop":"author"}).get_text(),item.find("span").find_next("span").a['href']] for item in data]
-			self.quotes.extend(new_quotes)
-			self.url=self.url.replace(next_page,"")
-
-		return self.quotes
-
-	def show_quote(self):
-		if GuessWho.switch:
-			self.parser()
+	def quotes_reader(self,filename):
+		with open(filename,"r") as file:
+			csv_reader=reader(file)
+			self.quotes=list(csv_reader)
+	def show_quote(self,filename):
+			self. quotes_reader(filename)
 			self.shown_random_quote=choose(self.quotes)
 			self.shown_quote_text=self.shown_random_quote[0]
 			self.shown_quote_author=self.shown_random_quote[1]
@@ -113,12 +92,12 @@ class GuessWho():
 		self.shown_quote_author_list=[alphab for alphab in self.shown_quote_author.upper() if alphab!=" " and alphab!=' ' and alphab!='.']
 		
 
+# quotes=GuessWho().quotes_reader("quotes.csv")
 
+def start_game(filename):
+	GuessWho().show_quote(filename)
 
-def start_game():
-		GuessWho().show_quote()
-start_game()
-
+start_game("quotes.csv")
 
 
 
