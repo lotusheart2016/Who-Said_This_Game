@@ -4,9 +4,10 @@ from random import choice as choose
 from time import sleep
 class GuessWho():
 	switch=True
+	base_url="http://quotes.toscrape.com"
 
-	def __init__(self,url):
-		self.url=url
+	def __init__(self):
+		self.url=GuessWho.base_url
 
 	def request(self):
 		self.response=requests.get(self.url)
@@ -114,11 +115,10 @@ class GuessWho():
 
 
 
+def start_game():
+		GuessWho().show_quote()
+start_game()
 
 
-
-quotes=GuessWho("http://quotes.toscrape.com")
-quotes.show_quote()
-# print(quotes.process_answer())
 
 
