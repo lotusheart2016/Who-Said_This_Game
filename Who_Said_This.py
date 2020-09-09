@@ -81,7 +81,7 @@ class GuessWho():
 		if user_res.upper()=='Y':
 			self.show_quote()
 		else:
-			print("Thanks for playing 'Said Who ?' game. We look forward to have you again. So long , have a nice day.")
+			return print("Thanks for playing 'Said Who ?' game. We look forward to have you again. So long , have a nice day.")
 
 	def hints(self):
 		if self.guess_remaining==3:
