@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 from random import choice as choose
-from time import sleep
 class GuessWho():
 	switch=True
 	base_url="http://quotes.toscrape.com"

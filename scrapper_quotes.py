@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-from random import choice as choose
 from time import sleep
 from csv import writer
 class scrapper_quotes():
