@@ -1,0 +1,2 @@
+# Who-Said_This_Game
+This first completed code for said who game. Code in python The code scraps over 100 quotes from "http://quotes.toscrape.com" It then presents a ransomly choosen quote from the website to the players and askes "Who said this ? Plaeyer has up to 4 chances to try and with each incorrect attempt , the player gets a hint. Players has option to terminate the came at every failed attempt. Player has optin to start new game once the he gets the correct answer or after every failed attempt.
